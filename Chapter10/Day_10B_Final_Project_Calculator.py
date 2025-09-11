@@ -1,4 +1,6 @@
 # Write your code below this line 👇
+from Day_10B_Final_Project_Calculator_Logo import logo;
+
 def addition(a, b):
     return(a + b);
 
@@ -14,6 +16,7 @@ def division(a, b):
 result = 0.0;
 is_calculation_over = False;
 
+print(logo);
 number1 = int(input("What's the first number?: "));
 while(is_calculation_over == False):
     print("+\n-\n*\n/");
@@ -23,13 +26,13 @@ while(is_calculation_over == False):
     number2 = int(input("What's the second number?: "))
 
     if(operation == "+"):
-        result = addition(a = number1, b = number2);
+        result = float(addition(a = number1, b = number2));
     elif(operation == "-"):
-        result = substraction(a = number1, b = number2);
+        result = float(substraction(a = number1, b = number2));
     elif(operation == "*"):
-        result = multiplication(a = number1, b = number2);
+        result = float(multiplication(a = number1, b = number2));
     elif(operation == "/"):
-        result = division(a = number1, b = number2);
+        result = float(division(a = number1, b = number2));
 
     print(f"{float(number1)} {operation} {float(number2)} = {result}");
 
