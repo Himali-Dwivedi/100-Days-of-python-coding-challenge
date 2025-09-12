@@ -1,6 +1,7 @@
 import random;
+import os;
 import Day_11A_Final_Project_BlackJack_Card_Details as card_details;
-from Day_11A_Final_Project_BlackJack_Logo import logo;
+
 def create_cards(number_of_cards, list_of_cards, list_of_ranks):
     for i in range(number_of_cards):
         rank = random.choice(card_details.ranks);
@@ -13,8 +14,10 @@ def create_cards(number_of_cards, list_of_cards, list_of_ranks):
 
 def calculate_score(list_of_ranks):
     your_score = 0;
+    handlingAces(list_of_ranks = list_of_ranks);
     for rank in list_of_ranks:
         your_score += card_details.card_values[rank];
+    card_details.card_values["A"] = 11;     #Switching back the value of Ace from 1 to 11 after the score calculation
     return your_score;
 
 
@@ -105,12 +108,17 @@ def hit(dealer_cards, dealer_ranks, user_cards, user_ranks, bet, user_balance):
 
 def double_down(dealer_cards, dealer_ranks, user_cards, user_ranks, bet, user_balance):
     bet *= 2
-    if(bet > user_balance):
+    while(bet > user_balance):
         print("You can't double down. You have insufficient balance");
-    else:
-        print(f"You doubled your bet! New bet: ${bet}");
-        create_cards(number_of_cards = 1, list_of_cards = user_cards, list_of_ranks = user_ranks);
-        user_balance = stand(dealer_cards = dealer_cards, dealer_ranks = dealer_ranks, user_cards = user_cards, user_ranks = user_ranks, bet = bet, user_balance = user_balance);
+        while (bet <= 0 or bet > user_balance // 2):
+            try:
+                bet = int(input("Please enter a new bet: $"));
+            except ValueError:
+                print("Invalid input");
+        bet = bet * 2;
+    print(f"You doubled your bet! New bet: ${bet}");
+    create_cards(number_of_cards = 1, list_of_cards = user_cards, list_of_ranks = user_ranks);
+    user_balance = stand(dealer_cards = dealer_cards, dealer_ranks = dealer_ranks, user_cards = user_cards, user_ranks = user_ranks, bet = bet, user_balance = user_balance);
     return user_balance;
 
 
@@ -174,3 +182,22 @@ def split(user_cards, user_ranks, dealer_cards, dealer_ranks, bet, user_balance)
             elif(user_action.lower() == "split"):
                 user_balance = split(dealer_cards = dealer_cards, dealer_ranks = dealer_ranks, user_cards = user_cards, user_ranks = user_ranks, bet = bet, user_balance = user_balance);
     return user_balance;
+
+
+def clear():
+    # For Windows
+    if os.name == 'nt':
+        os.system('cls')
+    # For macOS/Linux
+    else:
+        os.system('clear')
+
+def handlingAces(list_of_ranks):
+    number_of_aces = 0;
+    for rank in list_of_ranks:
+        if(rank == "A"):
+            number_of_aces += 1;
+    if(number_of_aces >=2):
+        card_details.card_values["A"] = 1;
+    else:
+        card_details.card_values["A"] = 11;
