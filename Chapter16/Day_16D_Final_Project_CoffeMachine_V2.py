@@ -21,9 +21,6 @@ while True:
             are_resources_sufficient = blueprints.CoffeeMachine.are_resources_sufficient();
             if(are_resources_sufficient == True):
                 blueprints.CoffeeMachine.handle_transaction();
-            else:
-                print("Ran out of resources. Can't make coffee.");
-                break;
         else:
             print("Thank you for using Pycoffee. Have a great day!");
     
@@ -32,8 +29,5 @@ while True:
         are_resources_sufficient = blueprints.CoffeeMachine.are_resources_sufficient();
         if(are_resources_sufficient == True):
             blueprints.CoffeeMachine.handle_transaction();
-        else:
-            print("Ran out of resources. Can't make coffee.");
-            break;
     if(blueprints.CoffeeMachine.does_user_want_to_continue() == False):
         break;

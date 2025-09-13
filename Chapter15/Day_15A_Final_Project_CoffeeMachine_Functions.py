@@ -25,13 +25,10 @@ def order_a_coffee(cost_of_espresso, cost_of_latte, cost_of_cappuccino,
 
     if(quantity_of_water < data.MENU[choosen_coffee]["ingredients"]["water"]):
         print("Sorry, there is not enough water.")
-        are_resources_sufficient = False;
     elif(quantity_of_milk < data.MENU[choosen_coffee]["ingredients"]["milk"]):
         print("Sorry, there is not enough milk.")
-        are_resources_sufficient = False;
     elif(quantity_of_coffee < data.MENU[choosen_coffee]["ingredients"]["coffee"]):
         print("Sorry, there is not enough coffee.")
-        are_resources_sufficient = False;
     else:
         print("Please insert coins.")
         while True:
@@ -86,7 +83,7 @@ def order_a_coffee(cost_of_espresso, cost_of_latte, cost_of_cappuccino,
             print(f"Here is your {choosen_coffee}☕ Enjoy!")
 
     # return updated resources if needed
-    return quantity_of_water, quantity_of_milk, quantity_of_coffee, amount_earned, are_resources_sufficient;
+    return quantity_of_water, quantity_of_milk, quantity_of_coffee, amount_earned;
 
 
 def clear():

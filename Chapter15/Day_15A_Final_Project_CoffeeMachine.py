@@ -42,16 +42,13 @@ while True:
             does_user_want_coffee = input("Invalid input!\nWould you like to order a coffee? Press 'y' to order a coffee. Otherwise, press 'n': ");
         
         if(does_user_want_coffee.lower() == "y"):
-            quantity_of_water, quantity_of_milk, quantity_of_coffee, amount_earned, are_resources_sufficient = functions.order_a_coffee(cost_of_espresso = cost_of_espresso, cost_of_latte = cost_of_latte, cost_of_cappuccino = cost_of_cappuccino, quantity_of_water = quantity_of_water, quantity_of_milk = quantity_of_milk, quantity_of_coffee = quantity_of_coffee, amount_earned = amount_earned);
-            if(are_resources_sufficient == False):
-                break;
+            quantity_of_water, quantity_of_milk, quantity_of_coffee, amount_earned = functions.order_a_coffee(cost_of_espresso = cost_of_espresso, cost_of_latte = cost_of_latte, cost_of_cappuccino = cost_of_cappuccino, quantity_of_water = quantity_of_water, quantity_of_milk = quantity_of_milk, quantity_of_coffee = quantity_of_coffee, amount_earned = amount_earned);
         else:
             print("Thank you for using Pycoffee. Have a great day!");
 
     elif(operation == "2"):
-        quantity_of_water, quantity_of_milk, quantity_of_coffee, amount_earned, are_resources_sufficient = functions.order_a_coffee(cost_of_espresso = cost_of_espresso, cost_of_latte = cost_of_latte, cost_of_cappuccino = cost_of_cappuccino, quantity_of_water = quantity_of_water, quantity_of_milk = quantity_of_milk, quantity_of_coffee = quantity_of_coffee, amount_earned = amount_earned);
-        if(are_resources_sufficient == False):
-            break;
+        quantity_of_water, quantity_of_milk, quantity_of_coffee, amount_earned = functions.order_a_coffee(cost_of_espresso = cost_of_espresso, cost_of_latte = cost_of_latte, cost_of_cappuccino = cost_of_cappuccino, quantity_of_water = quantity_of_water, quantity_of_milk = quantity_of_milk, quantity_of_coffee = quantity_of_coffee, amount_earned = amount_earned);
+
     does_user_want_to_use_it_again = input("Do you want to use it again? (y/n): ")
     while(does_user_want_to_use_it_again.lower() not in ["y", "n"]):
         does_user_want_to_use_it_again = input("Invalid input!\nDo you want to use it again? (y/n): ");
