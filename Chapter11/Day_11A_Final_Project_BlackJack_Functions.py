@@ -14,10 +14,31 @@ def create_cards(number_of_cards, list_of_cards, list_of_ranks):
 
 def calculate_score(list_of_ranks):
     your_score = 0;
-    handlingAces(list_of_ranks = list_of_ranks);
+    list_of_values = [];
+    indexes_of_aces = [];
+    # handlingAces(list_of_ranks = list_of_ranks);
     for rank in list_of_ranks:
-        your_score += card_details.card_values[rank];
-    card_details.card_values["A"] = 11;     #Switching back the value of Ace from 1 to 11 after the score calculation
+        list_of_values.append(card_details.card_values[rank]);
+
+    for value in list_of_values:
+        your_score += value;
+    
+    if(your_score > 21):
+        if 11 in list_of_values:
+            for i in range(len(list_of_values)):
+                if(list_of_values[i] == 11):
+                    indexes_of_aces.append(i);
+        i = 0;
+        while((your_score > 21) and (11 in list_of_values)):
+            your_score = 0;
+            list_of_values[indexes_of_aces[i]] = 1;
+            for value in list_of_values:
+                your_score += value;
+            i += 1;
+
+    # for rank in list_of_ranks:
+    #     your_score += card_details.card_values[rank];
+    # card_details.card_values["A"] = 11;     #Switching back the value of Ace from 1 to 11 after the score calculation
     return your_score;
 
 
@@ -90,6 +111,8 @@ def hit(dealer_cards, dealer_ranks, user_cards, user_ranks, bet, user_balance):
     while (want_to_hit == True):
         print("Your Hand:\n")
         create_cards(number_of_cards = 1, list_of_cards = user_cards, list_of_ranks = user_ranks);
+        # user_cards.append(card_details.cards["A♠"].splitlines())
+        # user_ranks.append("A")
         print_cards(list_of_cards = user_cards);
         user_score = calculate_score(list_of_ranks = user_ranks);
         print(f"Your score = {user_score}")

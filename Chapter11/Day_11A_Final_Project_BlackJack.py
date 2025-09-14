@@ -59,6 +59,8 @@ while (is_rematch == True):
     print("Your Hand:\n")
     # Your Card
     blackjack_functions.create_cards(number_of_cards = 2, list_of_cards = user_cards, list_of_ranks = user_ranks);
+    # user_cards = [card_details.cards["A♠"].splitlines(), card_details.cards["A♠"].splitlines()];
+    # user_ranks = ["A", "A"];
 
     blackjack_functions.print_cards(list_of_cards = user_cards);
     print(f"Your score = {blackjack_functions.calculate_score(list_of_ranks = user_ranks)}")
